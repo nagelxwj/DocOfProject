@@ -1,0 +1,44 @@
+方案一:
+将用户上传的文件转换为SWF,在系统的'查看'功能中直接为打开swf文件,由ie中安装的flashplayer处理.
+主要要点:
+1.文件转换为swf的开源工具:
+SWFTools或者Flashpaper,
+swftools可以转换jpeg,png等,详细参照http://www.swftools.org/和http://wiki.swftools.org/wiki/Main_Page
+flashpaper可用于word,excel,pdf等转换为swf,开发相关参照http://www.adobe.com/support/documentation/en/flashpaper/2/flashpaper_api/index.html
+两工具均可通过命令行调用生成文件
+ 
+2.swf的加密处理:
+2.1 url锁定:
+在第一帧中加入如下代码： 
+fscommand (“allowscale”, “0″); 
+url = “http://www.fllashbank.cn”; 
+if (_url.substring(0, 22)<>url) { 
+gotoAndPlay (2); 
+} else { 
+gotoAndPlay (3); 
+} 
+actions for frame 2 
+stop (); 
+actions for frame 3 
+stop (); 
+可以看到，在这几行代码里我将url定义为网站的地址，而在后面进行了一个if判断 
+
+2.2 服务器密码验证
+
+编写脚本,播放之前通过服务器进行密码验证
+
+ 
+
+方案二:Java+Flex
+
+上传文件转换为pdf或者swf,通过flexpaper开源工具提供用户访问页面
+
+参照http://flexpaper.devaldi.com/default.jsp
+
+http://hi.baidu.com/wenke_wang/blog/item/c6eb3365ceff25fcf73654a0.html等
+
+项目配置参照http://stussy.blog.163.com/blog/static/2337964820111104225210/   (举例)
+
+ 
+
+优势:美观
